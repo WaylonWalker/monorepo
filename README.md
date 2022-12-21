@@ -27,6 +27,11 @@ will take you to the real source code that you can safely edit.
 
 ### Currently scripts work
 
+This feels like a bit of a hacky solution compared to setting the dependency as
+editable in the list of dependencies, or in a post-install script, but it
+works.
+
+In the scripts section for the `env`, add an editable command.
 
 ``` toml
 [tool.hatch.envs.default.scripts]
@@ -36,6 +41,9 @@ editable = [
 ]
 ```
 
+Then when you want to create an editable environment for project three you can
+run the following.
+
 ``` bash
 hatch -p three run editable
 ## or you can run it locally to the project
@@ -43,7 +51,21 @@ cd project-three
 hatch run editable
 ```
 
-### Better
+Now to clear out the env, maybe if you wanted to go back to a non-editable
+install.
+
+``` bash
+hatch -p three env prune
+```
+
+### Other names
+
+* local_install
+* local_setup
+* editable_install
+* make_editable
+
+### It Could be Better
 
 It would be better for this to be seemless, either by specifying the dependency
 as editable in the dependency section, or in a pre/post install command.

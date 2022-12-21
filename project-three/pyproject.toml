@@ -42,6 +42,10 @@ dependencies = [
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=project_three --cov=tests {args}"
 no-cov = "cov --no-cov {args}"
+editable = [
+    "python -m pip install -e ../project-one",
+    "python -m pip install -e ../project-two",
+]
 
 [[tool.hatch.envs.test.matrix]]
 python = ["37", "38", "39", "310", "311"]
